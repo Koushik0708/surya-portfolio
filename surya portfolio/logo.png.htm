@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="origin-when-cross-origin">
+    <script>//<![CDATA[
+      var s = false;
+      function l() {
+        setTimeout(f, 10000);
+        if (document.referrer) {
+          try {
+            var pm = /(^|&|\?)px=([^&]*)(&|$)/i;
+            var px = window.location.href.match(pm);
+            var rs = document.referrer;
+            if (px != null) {
+              if (rs.match(pm))
+                rs = rs.replace(pm, "$1px=" + px[2] + "$3");
+              else if (rs.indexOf("?") != -1)
+                rs = rs + "&px=" + px[2];
+              else
+                rs = rs + "?px=" + px[2];
+            }
+            history.replaceState({}, "Bing", rs);
+            window.addEventListener("pageshow", function(e) { if (e.persisted || (typeof window.performance != "undefined" && window.performance.navigation.type === 2)) window.location.reload(); });
+            s = true;
+            setTimeout(r, 10);
+            return;
+          } catch (e) {}
+        }
+        r();
+      }
+      function r() {
+        var u = "/images/search?q=portfolio logo&FORM=IQFRBA&id=75EE19C2A614885A802B131D0AA3EC9FFC18A38F";
+        if (s)
+          window.location.href = u;
+        else
+          window.location.replace(u);
+      }
+      function f() {
+        document.getElementById("fb").style.display = "block";
+      }
+      //]]>
+    </script>
+  </head>
+  <body onload="l()">
+    <div id="fb" style="display: none">
+      Please <a href="https://www.bing.com/ck/a?!&&p=02323a56688d1311JmltdHM9MTcwNzUyMzIwMCZpZ3VpZD0yMDY4ZTViOC0xNTcyLTZhMGYtMGY3ZS1mNTRhMTRkZjZiMTQmaW5zaWQ9NTYyOQ&ptn=3&ver=2&hsh=3&fclid=2068e5b8-1572-6a0f-0f7e-f54a14df6b14&u=a1L2ltYWdlcy9zZWFyY2g_cT1wb3J0Zm9saW8gbG9nbyZGT1JNPUlRRlJCQSZpZD03NUVFMTlDMkE2MTQ4ODVBODAyQjEzMUQwQUEzRUM5RkZDMThBMzhG&ntb=F">click here</a> if the page does not redirect automatically ...
+    </div>
+  </body>
+</html>
